@@ -1,0 +1,35 @@
+---
+title: "Tasks"
+author: "Ruzza Tomas"
+date: "6/24/2021"
+output: pdf_document
+---
+
+Cercare dataset:
+Stringency_Index --> V;
+Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strenght
+EconomicDataset
+CovidData --> our world in data
+
+Operazionalizations:
+A. Scales:
+   1. Comparative Manifesto proj: https://manifesto-project.wzb.eu
+   2. Comparative Agenda proj: http://www.comparativeagendas.org
+   3. Chapell Hill: https://www.chesdata.eu
+
+B. Health of Economy:
+   1. Indice di liquidità: 
+   2. Indice di debito.
+   
+C. CovidData:
+   1. Incidenza dei Casi
+   2. Ospedalizzazioni
+   
+
+Stati da comporare:
+Italy, 
+Germany,
+UK,
+Sweden,
+Spain.
+
