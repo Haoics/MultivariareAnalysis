@@ -12,5 +12,8 @@ parl_fil <- parlgov[
 cabs <- parl_fil[parl_fil$cabinet_party == 1,]
 
 #calculating seats shares----
+govs <- cabs %>%  
+  group_by(country_name) %>% 
+  mutate(share_seats = (sum(seats)/election_seats_total*100))
 
-
+#left-right scale weighted mean TO DO----
