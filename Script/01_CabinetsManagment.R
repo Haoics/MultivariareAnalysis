@@ -1,7 +1,6 @@
-setwd("/Users/tomasruzza/Desktop/MultivariareAnalysis/Dataset")
 library(tidyverse)
-pgovs <- rio::import("cabinet.xlsx")
-party <- rio::import("party.xlsx")
+pgovs <- rio::import(here::here("Dataset/", "cabinet.xlsx"))
+party <- rio::import(here::here("Dataset/","party.xlsx"))
 #pandemic cabinets----
 parl_fil <- pgovs[
       pgovs$cabinet_name == "Conte II" |
@@ -46,8 +45,8 @@ govs <- cabs %>%
 #left-right scale weighted mean PARLGOV OPERAZIONALIZATION----
 #M5S has value NA in all the three scales: we have decided to give them an arbitrary value = 4.
 
-lr_wm <- 
-
+lr_wm_ita <- (2.62*112 + 4*227 + 1.3*14)/353 # 3.45 
+lr_wm_de <- (6.25*246 + 3.65)
 
 
 
