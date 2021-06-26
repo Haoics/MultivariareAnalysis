@@ -44,9 +44,13 @@ govs <- cabs %>%
 
 #left-right scale weighted mean PARLGOV OPERAZIONALIZATION----
 #M5S has value NA in all the three scales: we have decided to give them an arbitrary value = 4.
+#per ora calcolo a mano, poi verrà fatto meglio
 
 lr_wm_ita <- (2.62*112 + 4*227 + 1.3*14)/353 # 3.45 
-lr_wm_de <- (6.25*246 + 3.65)
+lr_wm_de <- (6.25*246 + 3.65*153)/(246+353) # 3.50
+lr_wm_esp <- (1.3*7 + 1.3*2 + 3.73*120 + 1.3*26 + 1.3*0)/(7+2+120+26+0) #3.18
+lr_wm_gb <- 7.42
+lr_wm_sw <- (3.37*16 + 3.44*100)/116 #3.43
 
 
 
