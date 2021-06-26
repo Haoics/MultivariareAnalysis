@@ -35,7 +35,7 @@ party_short2 <- select(party_short, party_name, left_right, state_market, libert
 
 parl_fil$left_right <- ifelse(parl_fil$party_name_short == "M5S",  NA, parl_fil$left_right)
 
-govs <- merge(parl_fil, party_short2, id = party_name)
+cabs <- merge(parl_fil, party_short2, id = party_name)
 #italia viva: decidere che cazzo fare con renzi: lo impicchiamo o gli scopiamo la moglie?
 
 #calculating seats shares----
@@ -43,4 +43,13 @@ govs <- cabs %>%
   group_by(country_name) %>% 
   mutate(share_seats = (sum(seats)/election_seats_total*100))
 
-#left-right scale weighted mean TO DO----
+#left-right scale weighted mean PARLGOV OPERAZIONALIZATION----
+#M5S has value NA in all the three scales: we have decided to give them an arbitrary value = 4.
+
+lr_wm <- 
+
+
+
+
+#ordering govs---
+govs_ordered <- select(govs, cabinet_name, country_name, share_seats, left_right, state_market, liberty_authority)
