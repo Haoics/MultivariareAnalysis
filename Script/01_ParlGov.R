@@ -52,7 +52,7 @@ lr_wm_esp <- (1.3*7 + 1.3*2 + 3.73*120 + 1.3*26 + 1.3*0)/(7+2+120+26+0) #3.18
 lr_wm_gb <- 7.42
 lr_wm_sw <- (3.37*16 + 3.44*100)/116 #3.43
 
-lr <- c(lr_wm_ita, lr_wm_de, lr_wm_esp, lr_wm_gb, lr_wm_sw)
+lr_pg <- c(lr_wm_ita, lr_wm_de, lr_wm_esp, lr_wm_gb, lr_wm_sw)
 
 sm_wm_ita <- (112*2.98 +227*4 + 14*1.4)/353 #3.57
 sm_wm_de <- (6.34*246 + 3.84*153)/(246+153) #5.38
@@ -60,12 +60,15 @@ sm_wm_esp <- (1.4*7 + 1.4*2 + 4.00*120 + 1.4*26 + 1.4*0)/(7+2+120+26+0) #3.41
 sm_wm_gb <- 7.57
 sm_wm_sw <- (3.38*16 + 3.56*100)/116 #3.53
 
+sm_pg <- c(sm_wm_ita, sm_wm_de, sm_wm_esp, sm_wm_gb, sm_wm_sw)
+
 la_wm_ita <- (2.09*112 + 4*227 + 3*14)/353 # 3.35
 la_wm_de <- (6.93*246 + 3.97*153)/(246+153) # 5.79
 la_wm_esp <- (3*7 + 3*2 + 3.03*120 + 3*26 + 3*0)/(7+2+120+26+0) #3.023
 la_wm_gb <- 7.19
 la_wm_sw <- (2.51*16 + 4.44*100)/116 #4.17
 
+la_pg <- c(la_wm_ita, la_wm_de, la_wm_esp, la_wm_gb, la_wm_sw)
 
 #ordering govs---
 govs_ordered <- select(govs, cabinet_name, country_name, share_seats, left_right, state_market, liberty_authority)
@@ -96,12 +99,6 @@ parlgov_final[[3]][5]<- la_wm_sw
 parlgov_final <- data.frame(unlist(parlgov_final))
 
 #df$ls_scale <- parlgov_final[[1]][1:5]
-
-
-
-
-
-
 
 
 
