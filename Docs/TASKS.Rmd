@@ -33,3 +33,12 @@ UK,
 Sweden,
 Spain.
 
+
+Codici stati
+3. Germania
+5. Spagna
+8. Italia
+11. UK
+18. Svezia
+
+
