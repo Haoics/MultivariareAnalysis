@@ -1,6 +1,5 @@
 chess <- rio::import(here::here("Dataset/", "CHES2019V3.dta"))
 
-
 #filtering dataset----
 chess2 <- chess[
     chess$party == "CDU" |
