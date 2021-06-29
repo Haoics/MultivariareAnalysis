@@ -95,7 +95,7 @@ parlgov_final[[3]][5]<- la_wm_sw
 
 parlgov_final <- data.frame(unlist(parlgov_final))
 
-df$ls_scale <- parlgov_final[[1]][1:5]
+#df$ls_scale <- parlgov_final[[1]][1:5]
 
 
 
