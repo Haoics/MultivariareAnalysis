@@ -31,7 +31,9 @@ wave3_stringency <- c(mean(string_ita_third$stringency_index),
 #Base df with operationalisations:
 country <- c("ITA", "DEU", "ESP", "GBR", "SWE")
 cabinet <- c("Conte II", "Merkel V", "Sanchez III", "Johnson II", "Lofven III")
-main <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1_stringency,
+share <- unique(govs$share_seats)
+
+main <- data.frame(country, cabinet, share, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1_stringency,
                    wave2_stringency, wave3_stringency)
 first_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1)
 second_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave2)
