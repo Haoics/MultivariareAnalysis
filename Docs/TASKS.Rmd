@@ -4,10 +4,16 @@ author: "Ruzza Tomas"
 date: "6/24/2021"
 output: pdf_document
 ---
+RQ: Does strength of anti-covid measures (limitation of personal freedom of movement) depends on political position of national governments. 
+
+h0=it does not depends from political scales but only from control factors
+hA=it depends from the political scales.
+
+control for: majority strength, economic health, health system performance, epidemical situation(incidence of the virus)
 
 Cercare dataset:
 Stringency_Index --> V;
-Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strenght
+Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strength(OK)
 EconomicDataset
 CovidData --> our world in data
 
