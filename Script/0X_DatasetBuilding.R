@@ -27,6 +27,8 @@ wave3_stringency <- c(mean(string_ita_third$stringency_index),
            mean(string_uk_third$stringency_index),
            mean(string_sw_third$stringency_index))
 
+#Intensive Care Units----
+intensive_care_units<-icu6$Value
 #Dataset Building----
 #Base df with operationalisations:
 country <- c("ITA", "DEU", "ESP", "GBR", "SWE")
@@ -34,8 +36,8 @@ cabinet <- c("Conte II", "Merkel V", "Sanchez III", "Johnson II", "Lofven III")
 share <- unique(govs$share_seats)
 
 main <- data.frame(country, cabinet, share, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1_stringency,
-                   wave2_stringency, wave3_stringency)
-first_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1)
-second_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave2)
-third_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave3)
+                   wave2_stringency, wave3_stringency, intensive_care_units)
+first_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1, intensive_care_units)
+second_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave2, intensive_care_units)
+third_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave3, intensive_care_units)
 
