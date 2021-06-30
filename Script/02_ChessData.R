@@ -53,7 +53,6 @@ lr_ch_esp<-(1.93*35 + 120*3.6)/155
 lr_ch_gb<-7.12            
 lr_ch_sw<-(3.29*16 + 100*3.88)/116
 
-lr_ch <- c(lr_ch_ita, lr_ch_de, lr_ch_esp, lr_ch_gb, lr_ch_sw)
 
 sm_ch_ita<-(3.58*112 + 227*3.21 + 14*1)/353
 sm_ch_de<-(153*3.71 + 246*6.14)/(246+153)
@@ -61,7 +60,6 @@ sm_ch_esp<-(35*2.13 + 120*3.8)/155
 sm_ch_gb<-7.06
 sm_ch_sw<-(4.12*100 + 16*3.94)/116
 
-sm_ch <- c(sm_ch_ita, sm_ch_de, sm_ch_esp,sm_ch_gb,sm_ch_sw )
 
 la_ch_ita<-(2.26*112 + 227*3.74 + 14*0.69)/353
 la_ch_de<-(153*3.38 + 246*6.57)/(246+153)
@@ -69,9 +67,6 @@ la_ch_esp<-(35*1.33 + 120*2.93)/155
 la_ch_gb<-6.17
 la_ch_sw<-(4.41*100 + 16*1.59)/116
 
-la_ch <- c(la_ch_ita, la_ch_de, la_ch_esp, la_ch_gb, la_ch_sw)
 
-#Base df with operationalisations:
-scales <- data.frame(lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch)
 
 
