@@ -46,7 +46,7 @@ chess_5[3,] <- NA
 
 chess6 <- drop_na(chess_5)
 
-##medie ponderate
+##medie ponderate----
 lr_ch_ita<-(3.21*112 + 4.78*227 + 1.44*14)/353
 lr_ch_de<-(3.62*153 + 246*6.52)/(246+153)
 lr_ch_esp<-(1.93*35 + 120*3.6)/155
