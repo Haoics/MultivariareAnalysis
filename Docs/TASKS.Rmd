@@ -12,8 +12,9 @@ hA=it depends from the political scales.
 control for: majority strength, economic health, health system performance, epidemical situation(incidence of the virus)
 
 Cercare dataset:
-Stringency_Index --> V;
-Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strength(OK)
+Stringency_Index for the three covid 19 waves --> (OK)
+Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strength (OK)
+
 EconomicDataset
 CovidData --> our world in data
 
