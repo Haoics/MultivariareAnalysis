@@ -70,35 +70,7 @@ la_wm_sw <- (2.51*16 + 4.44*100)/116 #4.17
 
 la_pg <- c(la_wm_ita, la_wm_de, la_wm_esp, la_wm_gb, la_wm_sw)
 
-#ordering govs---
-govs_ordered <- select(govs, cabinet_name, country_name, share_seats, left_right, state_market, liberty_authority)
 
-parlgov_final <-  rep(list(vector(mode ="list", length = 5)), 3)
-
-#left right scale insert values
-parlgov_final[[1]][1]<- lr_wm_ita
-parlgov_final[[1]][2]<- lr_wm_de
-parlgov_final[[1]][3]<- lr_wm_esp
-parlgov_final[[1]][4]<- lr_wm_gb
-parlgov_final[[1]][5]<- lr_wm_sw
-
-#state makert insert values
-parlgov_final[[2]][1]<- sm_wm_ita
-parlgov_final[[2]][2]<- sm_wm_de
-parlgov_final[[2]][3]<- sm_wm_esp
-parlgov_final[[2]][4]<- sm_wm_gb
-parlgov_final[[2]][5]<- sm_wm_sw
-
-#liberatism authoritarianis insert data
-parlgov_final[[3]][1]<- la_wm_ita
-parlgov_final[[3]][2]<- la_wm_de
-parlgov_final[[3]][3]<- la_wm_esp
-parlgov_final[[3]][4]<- la_wm_gb
-parlgov_final[[3]][5]<- la_wm_sw
-
-parlgov_final <- data.frame(unlist(parlgov_final))
-
-#df$ls_scale <- parlgov_final[[1]][1:5]
 
 
 
