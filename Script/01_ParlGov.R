@@ -35,8 +35,7 @@ party_short2 <- select(party_short, party_name, party_name_short, left_right, st
 parl_fil$left_right <- ifelse(parl_fil$party_name_short == "M5S",  NA, parl_fil$left_right)
 
 cabs <- merge(parl_fil, party_short2, id = party_name)
-#italia viva: decidere che cazzo fare con renzi: lo impicchiamo o gli scopiamo la moglie?
-
+#italia viva: cosa fare con renzi?
 #calculating seats shares----
 govs <- cabs %>%  
   group_by(country_name) %>% 
