@@ -60,3 +60,8 @@ first_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm
 second_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave2_stringency, intensive_care_units, wave2_inc)
 third_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave3_stringency, intensive_care_units, wave3_inc)
 
+main_merged <- merge(main, debt_filtered)
+
+str(main_merged)
+main_merged$intensive_care_units <- as.numeric(main_merged$intensive_care_units)
+main_merged$debt_share_on_gdp <- as.numeric(main_merged$debt_share_on_gdp)
