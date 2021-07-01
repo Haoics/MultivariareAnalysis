@@ -29,6 +29,25 @@ wave3_stringency <- c(mean(string_ita_third$stringency_index),
 
 #Intensive Care Units----
 intensive_care_units<-icu6$Value
+#COVID incidence----
+
+wave1_inc <- c(mean(incidencew1_ita$inc_index),
+               mean(incidencew1_deu$inc_index),
+               mean(incidencew1_esp$inc_index),
+               mean(incidencew1_uk$inc_index),
+               mean(incidencew1_sw$inc_index))
+
+wave2_inc <- c(mean(incidencew2_ita$inc_index),
+               mean(incidencew2_deu$inc_index),
+               mean(incidencew2_esp$inc_index),
+               mean(incidencew2_uk$inc_index),
+               mean(incidencew2_sw$inc_index))
+
+wave3_inc <- c(mean(incidencew3_ita$inc_index),
+               mean(incidencew3_deu$inc_index),
+               mean(incidencew3_esp$inc_index),
+               mean(incidencew3_uk$inc_index),
+               mean(incidencew3_sw$inc_index))
 #Dataset Building----
 #Base df with operationalisations:
 country <- c("ITA", "DEU", "ESP", "GBR", "SWE")
@@ -36,8 +55,8 @@ cabinet <- c("Conte II", "Merkel V", "Sanchez III", "Johnson II", "Lofven III")
 share <- unique(govs$share_seats)
 
 main <- data.frame(country, cabinet, share, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1_stringency,
-                   wave2_stringency, wave3_stringency, intensive_care_units)
-first_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1, intensive_care_units)
-second_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave2, intensive_care_units)
-third_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave3, intensive_care_units)
+                   wave2_stringency, wave3_stringency, intensive_care_units, wave1_inc, wave2_inc, wave3_inc)
+first_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1_stringency, intensive_care_units, wave1_inc)
+second_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave2_stringency, intensive_care_units, wave2_inc)
+third_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave3_stringency, intensive_care_units, wave3_inc)
 
