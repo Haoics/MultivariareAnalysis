@@ -10,7 +10,7 @@ h0=it does not depends from political scales but only from control factors
 hA=it depends from the political scales.
 
 control for: majority strength (OK)
-economic health
+economic health (OK, used percentage of debit on pil, data from indexmundi)
 health system performance (OK, ICU data OCSE)
 epidemical situation(incidence of the virus. OK. data from our world in data, complete and filtered dataset)
 
@@ -18,7 +18,7 @@ Cercare dataset:
 Stringency_Index for the three covid 19 waves --> (OK)
 Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strength (OK)
 
-EconomicDataset
+EconomicDataset (indexmundi)
 
 CovidData --> our world in data (OK)
 
