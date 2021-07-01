@@ -9,17 +9,18 @@ RQ: Does strength of anti-covid measures (limitation of personal freedom of move
 h0=it does not depends from political scales but only from control factors
 hA=it depends from the political scales.
 
-control for: majority strength
+control for: majority strength (OK)
 economic health
 health system performance (OK, ICU data OCSE)
-epidemical situation(incidence of the virus)
+epidemical situation(incidence of the virus. OK. data from our world in data, complete and filtered dataset)
 
 Cercare dataset:
 Stringency_Index for the three covid 19 waves --> (OK)
 Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strength (OK)
 
 EconomicDataset
-CovidData --> our world in data
+
+CovidData --> our world in data (OK)
 
 Operazionalizations:
 A. Scales:
