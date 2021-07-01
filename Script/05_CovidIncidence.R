@@ -1,19 +1,20 @@
 library(tidyverse)
 library(lubridate)
 
-covid <- rio::import(here::here("Dataset/", "covid.csv"))
+#covid <- rio::import(here::here("Dataset/", "covid.csv"))
 
-covid_cnt <- covid[
-  covid$location == "Italy" |
-    covid$location == "Germany" |
-    covid$location == "Spain" |
-    covid$location == "United Kingdom" |
-    covid$location == "Sweden", 
-]
+#covid_cnt <- covid[
+# covid$location == "Italy" |
+#    covid$location == "Germany" |
+#   covid$location == "Spain" |
+#  covid$location == "United Kingdom" |
+# covid$location == "Sweden",]
 
 #rio::export(covid_cnt, "covid_filtered.csv")
 #pca----
 #install.packages("imputeTS")
+
+covid_cnt <- rio::import(here::here("Dataset/", "covid_filtered.csv"))
 library(imputeTS)
 covid_fit <- na_replace(covid_cnt, 0)
 
