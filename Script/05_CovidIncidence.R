@@ -11,6 +11,7 @@ covid_cnt <- covid[
     covid$location == "Sweden", 
 ]
 
+#rio::export(covid_cnt, "covid_filtered.csv")
 #pca----
 #install.packages("imputeTS")
 library(imputeTS)
