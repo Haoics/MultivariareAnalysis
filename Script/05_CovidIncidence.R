@@ -1,6 +1,9 @@
 library(tidyverse)
 library(lubridate)
 
+#Lines 4-14 commented because of the larg size of covid dataset. We have exported
+# the filtered dataset and worked with it.
+
 #covid <- rio::import(here::here("Dataset/", "covid.csv"))
 
 #covid_cnt <- covid[
@@ -11,10 +14,11 @@ library(lubridate)
 # covid$location == "Sweden",]
 
 #rio::export(covid_cnt, "covid_filtered.csv")
-#pca----
-#install.packages("imputeTS")
+
 
 covid_cnt <- rio::import(here::here("Dataset/", "covid_filtered.csv"))
+
+#install.packages("imputeTS")
 library(imputeTS)
 covid_fit <- na_replace(covid_cnt, 0)
 
@@ -29,6 +33,7 @@ covid_fit_num <- subset(covid_fit2, select = -c(tests_units, population, populat
                                                 life_expectancy, human_development_index))
 
 str(covid_fit_num)
+#pca----
 pca <- princomp(~ ., data = covid_fit_num, cor = T)
 summary(pca)
 
