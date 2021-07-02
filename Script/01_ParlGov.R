@@ -7,30 +7,65 @@ parl_fil <- pgovs[
       pgovs$cabinet_name == "Merkel V" |
       pgovs$cabinet_name == "Lofven III" |
       pgovs$cabinet_name == "Sanchez III" |
-      pgovs$cabinet_name == "Johnson II",
-]
+      pgovs$cabinet_name == "Johnson II" |
+      pgovs$cabinet_name == "Marin"  |
+      pgovs$cabinet_name ==  "Morawiecki II" |
+        pgovs$cabinet_name ==  "Wilmes II" | 
+        pgovs$cabinet_name ==  "Costa II" |
+        pgovs$cabinet_name ==  "Bierlein II" |
+        pgovs$cabinet_name ==  "Skvernelis III" |
+        pgovs$cabinet_name ==  "Mitsotakis Kyr" |
+        pgovs$cabinet_name ==  "Frederiksen" |
+        pgovs$cabinet_name ==  "Ratas II" |
+        pgovs$cabinet_name ==  "Karins" |
+        pgovs$cabinet_name ==  "Bettel II" |
+        pgovs$cabinet_name ==  "Jansa III" |
+        pgovs$cabinet_name ==  "Matovic" |
+        pgovs$cabinet_name ==  "Abela" |
+        pgovs$cabinet_name ==  "Babis II" |
+        pgovs$cabinet_name ==  "Orban IV" |
+        pgovs$cabinet_name ==  "Anastasiades IV" |
+        pgovs$cabinet_name ==  "Rutte V" |
+        pgovs$cabinet_name ==  "Plenkovic II" |
+        pgovs$cabinet_name ==  "Borisov III" |
+        pgovs$cabinet_name ==  "Philippe II" |
+        pgovs$cabinet_name ==  "Varadkar II" |
+        pgovs$cabinet_name ==  "Orban II" , ]
+        
 
+
+        
 control_party <- parl_fil[parl_fil$cabinet_party ==1,]
 
-party_short <- party[
-    party$party_name_short == "CDU+CSU" |
-    party$party_name_short == "SPD" |
-    party$party_name_short == "ECP" |
-    party$party_name_short == "EM|GCE" |
-    party$party_name_short == "P" |
-    party$party_name_short == "PSOE" |
-    party$party_name_short == "UP" |
-    party$party_name_short == "Con" |
-    party$party_name_short == "IV" |
-    party$party_name_short == "M5S" |
-    party$party_name_short == "PC" |
-    party$party_name_short == "PD" |
-    party$party_name_short == "S" |
-    party$party_name_short == "MP" |
-    party$party_name_short == "SAP" ,
-]
+unique(control_party$cabinet_party)
 
-party_short2 <- select(party_short, party_name, party_name_short, left_right, state_market, liberty_authority)
+
+#party_short <- party[
+   # party$party_name_short == "CDU+CSU" |
+    ##party$party_name_short == "SPD" |
+    ##party$party_name_short == "ECP" |
+    #party$party_name_short == "EM|GCE" |
+    #party$party_name_short == "P" |
+    #party$party_name_short == "PSOE" |
+    #party$party_name_short == "UP" |
+    #party$party_name_short == "Con" |
+    #party$party_name_short == "IV" |
+    #party$party_name_short == "M5S" |
+    #party$party_name_short == "PC" |
+    #party$party_name_short == "PD" |
+    #party$party_name_short == "S" |
+    #party$party_name_short == "MP" |
+    #party$party_name_short == "SAP" ,
+#]
+
+control_party$party_id <- ifelse(control_party$party_name_short == "M5S",  2155 , control_party$party_id)
+control_party$country_id <- ifelse(control_party$party_name_short == "M5S",  26 , control_party$country_id)
+merged <- merge(party, control_party, id = party_name)
+unique(merged$party_id)
+unique(control_party$party_id)
+
+
+party_short <- select(control_party, party_name, party_name_short, left_right, state_market, liberty_authority)
 
 parl_fil$left_right <- ifelse(parl_fil$party_name_short == "M5S",  NA, parl_fil$left_right)
 
