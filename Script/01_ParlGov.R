@@ -8,7 +8,6 @@ parl_fil <- pgovs[
       pgovs$cabinet_name == "Lofven III" |
       pgovs$cabinet_name == "Sanchez III" |
       pgovs$cabinet_name == "Johnson II" |
-      pgovs$cabinet_name == "Marin"  |
       pgovs$cabinet_name ==  "Morawiecki II" |
         pgovs$cabinet_name ==  "Wilmes II" | 
         pgovs$cabinet_name ==  "Costa II" |
@@ -17,7 +16,6 @@ parl_fil <- pgovs[
         pgovs$cabinet_name ==  "Mitsotakis Kyr" |
         pgovs$cabinet_name ==  "Frederiksen" |
         pgovs$cabinet_name ==  "Ratas II" |
-        pgovs$cabinet_name ==  "Karins" |
         pgovs$cabinet_name ==  "Bettel II" |
         pgovs$cabinet_name ==  "Jansa III" |
         pgovs$cabinet_name ==  "Matovic" |
@@ -68,45 +66,27 @@ control_party_clean <- drop_na(control_party)
 
 merged <- merge(party, control_party_clean, id = party_name)
 
-a <- unique(merged$party_id)
-a <- sort(a)
-b <- unique(control_party_clean$party_id)
-b <- sort(b)
-
-#partiti da mettere a posto = LA e DL|VAS
 
 #variables selection----
-party_short <- select(merged, party_name_english, party_name_short, left_right, state_market, liberty_authority)
+party_short <- select(merged, country_name_short, party_name_english, party_name_short, left_right, 
+                      state_market, liberty_authority, seats, election_seats_total )
 
-#calculating seats shares----
-govs <- cabs %>%  
-  group_by(country_name) %>% 
+#calculating seats shares and weighted means----
+govs <- party_short %>%  
+  group_by(country_name_short) %>% 
   mutate(share_seats = (sum(seats)/election_seats_total*100))
 
-#left-right scale weighted mean PARLGOV OPERAZIONALIZATION----
-#M5S has value NA in all the three scales: we have decided to give them an arbitrary value = 4.
-#per ora calcolo a mano, poi verrà fatto meglio
+govs <- govs %>%
+  group_by(country_name_short) %>% 
+  mutate(weighted_lr = weighted.mean(left_right, seats))
 
-lr_wm_ita <- (2.62*112 + 4*227 + 1.3*14)/353 # 3.45 
-lr_wm_de <- (6.25*246 + 3.65*153)/(246+153) #5.25 
-lr_wm_esp <- (1.3*7 + 1.3*2 + 3.73*120 + 1.3*26 + 1.3*0)/(7+2+120+26+0) #3.18
-lr_wm_gb <- 7.42
-lr_wm_sw <- (3.37*16 + 3.44*100)/116 #3.43
+govs <- govs %>%
+  group_by(country_name_short) %>% 
+  mutate(weighted_lr = weighted.mean(state_market, seats))
 
-
-sm_wm_ita <- (112*2.98 +227*4 + 14*1.4)/353 #3.57
-sm_wm_de <- (6.34*246 + 3.84*153)/(246+153) #5.38
-sm_wm_esp <- (1.4*7 + 1.4*2 + 4.00*120 + 1.4*26 + 1.4*0)/(7+2+120+26+0) #3.41
-sm_wm_gb <- 7.57
-sm_wm_sw <- (3.38*16 + 3.56*100)/116 #3.53
-
-
-la_wm_ita <- (2.09*112 + 4*227 + 3*14)/353 # 3.35
-la_wm_de <- (6.93*246 + 3.97*153)/(246+153) # 5.79
-la_wm_esp <- (3*7 + 3*2 + 3.03*120 + 3*26 + 3*0)/(7+2+120+26+0) #3.023
-la_wm_gb <- 7.19
-la_wm_sw <- (2.51*16 + 4.44*100)/116 #4.17
-
+govs <- govs %>%
+  group_by(country_name_short) %>% 
+  mutate(weighted_lr = weighted.mean(liberty_authority, seats))
 
 
 
