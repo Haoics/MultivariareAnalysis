@@ -38,8 +38,8 @@ parl_fil <- pgovs[
 control_party <- parl_fil[parl_fil$cabinet_party ==1,]
 
 unique(control_party$cabinet_party)
-
-
+str(control_party)
+str(party)
 #party_short <- party[
    # party$party_name_short == "CDU+CSU" |
     ##party$party_name_short == "SPD" |
@@ -57,20 +57,27 @@ unique(control_party$cabinet_party)
     #party$party_name_short == "MP" |
     #party$party_name_short == "SAP" ,
 #]
+#Problem resolution----
+#M5S
+control_party$party_id <- ifelse(control_party$party_name_short == "M5S",  2155, control_party$party_id)
+control_party$country_id <- ifelse(control_party$party_name_short == "M5S",  26, control_party$country_id)
+control_party$left_right <- ifelse(control_party$party_name_short == "M5S",  4, control_party$left_right)
+party$left_right <- ifelse(party$party_name_short == "M5S",  4, party$left_right)
 
-control_party$party_id <- ifelse(control_party$party_name_short == "M5S",  2155 , control_party$party_id)
-control_party$country_id <- ifelse(control_party$party_name_short == "M5S",  26 , control_party$country_id)
-merged <- merge(party, control_party, id = party_name)
-unique(merged$party_id)
-unique(control_party$party_id)
+control_party_clean <- drop_na(control_party)
 
+merged <- merge(party, control_party_clean, id = party_name)
 
-party_short <- select(control_party, party_name, party_name_short, left_right, state_market, liberty_authority)
+a <- unique(merged$party_id)
+a <- sort(a)
+b <- unique(control_party_clean$party_id)
+b <- sort(b)
 
-parl_fil$left_right <- ifelse(parl_fil$party_name_short == "M5S",  NA, parl_fil$left_right)
+#partiti da mettere a posto = LA e DL|VAS
 
-cabs <- merge(parl_fil, party_short2, id = party_name)
-#italia viva: cosa fare con renzi?
+#variables selection----
+party_short <- select(merged, party_name_english, party_name_short, left_right, state_market, liberty_authority)
+
 #calculating seats shares----
 govs <- cabs %>%  
   group_by(country_name) %>% 
