@@ -2,11 +2,31 @@ library(lubridate)
 
 string <- rio::import(here::here("Dataset/", "stringency.csv"))
 
-string_fil <- string[string$Code == "ITA" |
+string_fil <- string[
+                       string$Code == "ITA" |
                        string$Code == "DEU" |
                        string$Code == "ESP" |
                        string$Code == "GBR" |
-                       string$Code == "SWE" , ]
+                       string$Code == "SWE" |
+                       string$Code == "BEL" |
+                       string$Code == "BGR" |
+                       string$Code == "CYP" |
+                       string$Code == "CZE" |
+                       string$Code == "DNK" |
+                       string$Code == "EST" |
+                       string$Code == "FRA" |
+                       string$Code == "HRV" |
+                       string$Code == "HUN" |
+                       string$Code == "IRL" |
+                       string$Code == "LTU" |
+                       string$Code == "LUX" |
+                       string$Code == "MLT" |
+                       string$Code == "NLD" |
+                       string$Code == "POL" |
+                       string$Code == "PRT" |
+                       string$Code == "ROU" |
+                       string$Code == "SVK" |
+                       string$Code == "SVN" , ]
 
 
 #Italy stringency----
@@ -106,6 +126,24 @@ string_sw_third <- string_fil[
     string_fil$Code == "SWE",
 ]
 
+#Belgium stringency----
+string_bel_first <- string_fil[
+  string_fil$Day > as_date("2020-03-03")  &
+    string_fil$Day < as_date("2020-06-15") &
+    string_fil$Code == "BEL",
+]
+
+string_bel_second <- string_fil[
+  string_fil$Day > as_date("2020-09-15")  &
+    string_fil$Day < as_date("2021-02-19") &
+    string_fil$Code == "BEL",
+]
+
+string_bel_third <- string_fil[
+  string_fil$Day > as_date("2021-02-19")  &
+    string_fil$Day < as_date("2021-06-28") &
+    string_fil$Code == "BEL",
+]
 
 
 

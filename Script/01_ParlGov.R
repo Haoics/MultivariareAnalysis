@@ -94,9 +94,8 @@ govs <- govs %>%
 is.na(govs)
 library(imputeTS)
 govs_cl0 <- na_replace(govs, 0)
-govs[25, ] <- NA
-govs[27, ] <- NA
-govs[29, ] <- NA
+govs[28, ] <- NA
+govs[30, ] <- NA
 govs_cl <- drop_na(govs)
 
 #Dataset Unique building
