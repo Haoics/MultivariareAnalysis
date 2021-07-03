@@ -39,9 +39,9 @@ unique(control_party$cabinet_party)
 str(control_party)
 str(party)
 #party_short <- party[
-   # party$party_name_short == "CDU+CSU" |
-    ##party$party_name_short == "SPD" |
-    ##party$party_name_short == "ECP" |
+    #party$party_name_short == "CDU+CSU" |
+    #party$party_name_short == "SPD" |
+    #party$party_name_short == "ECP" |
     #party$party_name_short == "EM|GCE" |
     #party$party_name_short == "P" |
     #party$party_name_short == "PSOE" |
@@ -61,6 +61,9 @@ control_party$party_id <- ifelse(control_party$party_name_short == "M5S",  2155,
 control_party$country_id <- ifelse(control_party$party_name_short == "M5S",  26, control_party$country_id)
 control_party$left_right <- ifelse(control_party$party_name_short == "M5S",  4, control_party$left_right)
 party$left_right <- ifelse(party$party_name_short == "M5S",  4, party$left_right)
+party$state_market <- ifelse(party$party_name_short == "M5S",  4, party$state_market)
+party$liberty_authority <- ifelse(party$party_name_short == "M5S",  4, party$liberty_authority)
+
 
 control_party_clean <- drop_na(control_party)
 
@@ -68,7 +71,7 @@ merged <- merge(party, control_party_clean, id = party_name)
 
 
 #variables selection----
-party_short <- select(merged, country_name_short, cabinet_name, party_name_short, left_right, 
+party_short <- select(merged, country_name_short, cabinet_name, left_right, 
                       state_market, liberty_authority, seats, election_seats_total )
 
 #calculating seats shares and weighted means----
@@ -88,12 +91,19 @@ govs <- govs %>%
   group_by(country_name_short) %>% 
   mutate(weighted_la = weighted.mean(liberty_authority, seats))
 
+is.na(govs)
+library(imputeTS)
+govs_cl0 <- na_replace(govs, 0)
+govs[25, ] <- NA
+govs[27, ] <- NA
+govs[29, ] <- NA
+govs_cl <- drop_na(govs)
 
-
-
-
-
-
+#Dataset Unique building
+data <- govs_cl %>%
+  group_by(country_name_short, cabinet_name) %>%
+  slice(1) %>%
+  ungroup()
 
 
 
