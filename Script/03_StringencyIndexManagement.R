@@ -150,7 +150,7 @@ string_bel_third <- string_fil[
 string_bul_first <- string_fil[
   string_fil$Day > as_date("2020-03-25")  &
     string_fil$Day < as_date("2020-09-01") &
-    string_fil$Code == "BGG",
+    string_fil$Code == "BGR",
 ]
 
 string_bul_second <- string_fil[
@@ -341,7 +341,7 @@ string_IRL_third <- string_fil[
 string_LTU_first <- string_fil[
   string_fil$Day > as_date("2020-03-21")  &
     string_fil$Day < as_date("2020-06-15") &
-    string_fil$Code == LTU,
+    string_fil$Code == "LTU",
 ]
 
 string_LTU_second <- string_fil[
@@ -363,7 +363,7 @@ string_LUX_first <- string_fil[
     string_fil$Code == "LUX",
 ]
 
-string_EST_second <- string_fil[
+string_LUX_second <- string_fil[
   string_fil$Day > as_date("2020-06-15")  &
     string_fil$Day < as_date("2021-01-20") &
     string_fil$Code == "LUX",
