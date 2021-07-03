@@ -1,13 +1,3 @@
-#PARLGOV scales----
-lr_pg <- c(lr_wm_ita, lr_wm_de, lr_wm_esp, lr_wm_gb, lr_wm_sw)
-sm_pg <- c(sm_wm_ita, sm_wm_de, sm_wm_esp, sm_wm_gb, sm_wm_sw)
-la_pg <- c(la_wm_ita, la_wm_de, la_wm_esp, la_wm_gb, la_wm_sw)
-
-#CHESSDATA scales----
-lr_ch <- c(lr_ch_ita, lr_ch_de, lr_ch_esp, lr_ch_gb, lr_ch_sw)
-sm_ch <- c(sm_ch_ita, sm_ch_de, sm_ch_esp,sm_ch_gb,sm_ch_sw )
-la_ch <- c(la_ch_ita, la_ch_de, la_ch_esp, la_ch_gb, la_ch_sw)
-
 #COVID waves stringency----
 wave1_stringency <- c(mean(string_bel_first$stringency_index), 
                       mean(string_bul_first$stringency_index),
@@ -89,31 +79,15 @@ wave3_stringency <- c(mean(string_bel_third$stringency_index),
                       mean(string_SVN_third$stringency_index),
                       mean(string_sw_third$stringency_index))
 
+#Intensive care units----
 
+data_icu <- merge(data, icu4, id = country_name)
+data_waves <- cbind(data_icu, wave1_stringency)
+data_waves2 <- cbind(data_waves, wave2_stringency)
+data_waves <- cbind(data_waves2, wave3_stringency)
+data_waves[14,16] <- 53.08496  #nel vettore non computava la media, l'abbiamo inserita a mano
 
-
-#Intensive Care Units----
-intensive_care_units<-icu6$Value
-#COVID incidence----
-
-wave1_inc <- c(mean(incidencew1_ita$inc_index),
-               mean(incidencew1_deu$inc_index),
-               mean(incidencew1_esp$inc_index),
-               mean(incidencew1_uk$inc_index),
-               mean(incidencew1_sw$inc_index))
-
-wave2_inc <- c(mean(incidencew2_ita$inc_index),
-               mean(incidencew2_deu$inc_index),
-               mean(incidencew2_esp$inc_index),
-               mean(incidencew2_uk$inc_index),
-               mean(incidencew2_sw$inc_index))
-
-wave3_inc <- c(mean(incidencew3_ita$inc_index),
-               mean(incidencew3_deu$inc_index),
-               mean(incidencew3_esp$inc_index),
-               mean(incidencew3_uk$inc_index),
-               mean(incidencew3_sw$inc_index))
-#Dataset Building----
+#Dataset Building DA RIVEDERE----
 #Base df with operationalisations:
 country <- unique(govs$country_name_short)
 cabinet <- unique(govs$cabinet_name)

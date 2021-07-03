@@ -34,4 +34,19 @@ icu3 <- icu2[
     icu2$Country == "Slovakia" |
     icu2$Country == "Slovenia" , ]
 
+icu4 <- rename(icu3,
+               country_name = Country,
+               ICU = Last)
+
+icu4 <- select(icu4, country_name, ICU)
+
+
+
+
+
+
+
+
+
+
 

@@ -356,6 +356,9 @@ string_LTU_third <- string_fil[
     string_fil$Code == "LTU",
 ]
 
+str(string_LTU_third)
+mean(string_LTU_third$stringency_index)
+
 #LUX stringency----
 string_LUX_first <- string_fil[
   string_fil$Day > as_date("2020-03-12")  &

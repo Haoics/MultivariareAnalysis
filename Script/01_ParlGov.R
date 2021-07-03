@@ -71,7 +71,7 @@ merged <- merge(party, control_party_clean, id = party_name)
 
 
 #variables selection----
-party_short <- select(merged, country_name_short, cabinet_name, left_right, 
+party_short <- select(merged, country_name_short, country_name, cabinet_name, left_right, 
                       state_market, liberty_authority, seats, election_seats_total )
 
 #calculating seats shares and weighted means----
