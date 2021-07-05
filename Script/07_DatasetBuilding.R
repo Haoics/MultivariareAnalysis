@@ -185,4 +185,10 @@ data_s <- cbind(data_s, wave3_stringency)
 #Intensive care units
 
 data_s2 <- merge(data_s, icu4,id = country_name)
-data_main <- subset(data_s2, select = -c(country_name, cabinet_name))
+
+#Debt
+data_fin <- merge(data_s2, debt, id = country_name) 
+data_main <- subset(data_fin, select = -c(country_name, cabinet_name))
+
+rio::export(data_main, "DATA_PG.csv")
+

@@ -28,42 +28,42 @@ chess2 <- chess[
     chess$party == "NFSB" |
     chess$party == "DISY" |
     chess$party == "DISY" |    
-        chess$party == "ANO2011" |
-        chess$party == "CSSD" |
-        chess$party == "SD" | #ce ne sono troppi, Eliminare l'osservazione della svezia C = 16
-        chess$party == "EK" |
-        chess$party == "EKRE" |
-        chess$party == "IRL" |
-        chess$party == "LREM" |
-        chess$party == "LR" |
-        chess$party == "ND" |
-        chess$party == "HDZ" |
-        chess$party == "HNS" |
-        chess$party == "Fidesz-KDNP" |
-        chess$party == "FG" |
-        chess$party == "LLRA" |
-        chess$party == "LSDP" |
-        chess$party == "TT" |
-        chess$party == "DP" | #Lux C = 38
-        chess$party == "Greng" |
-        chess$party == "LSAP" |
-        chess$party == "PL" |
-        chess$party == "CDA" |
-        chess$party == "CU" |
-        chess$party == "D66" |
-        chess$party == "VVD" |
-        chess$party == "PiS" |
-        chess$party == "PS" | #Portogallo C = 12
-        chess$party == "PNL" |
-        chess$party == "OLaNO" |
-        chess$party == "SaS" |
-        chess$party == "Sme Rodina" |
-        chess$party == "Za Ludi" |
-        chess$party == "DeSUS" |
-        chess$party == "NSI" |
-        chess$party == "SDS" |
-        chess$party == "NSI" |
-        chess$party == "SMC" ,
+    chess$party == "ANO2011" |
+    chess$party == "CSSD" |
+    chess$party == "SD" | #ce ne sono troppi, Eliminare l'osservazione della svezia C = 16
+    chess$party == "EK" |
+    chess$party == "EKRE" |
+    chess$party == "IRL" |
+    chess$party == "LREM" |
+    chess$party == "LR" |
+    chess$party == "ND" |
+    chess$party == "HDZ" |
+    chess$party == "HNS" |
+    chess$party == "Fidesz-KDNP" |
+    chess$party == "FG" |
+    chess$party == "LLRA" |
+    chess$party == "LSDP" |
+    chess$party == "TT" |
+    chess$party == "DP" | #Lux C = 38
+    chess$party == "Greng" |
+    chess$party == "LSAP" |
+    chess$party == "PL" |
+    chess$party == "CDA" |
+    chess$party == "CU" |
+    chess$party == "D66" |
+    chess$party == "VVD" |
+    chess$party == "PiS" |
+    chess$party == "PS" | #Portogallo C = 12
+    chess$party == "PNL" |
+    chess$party == "OLaNO" |
+    chess$party == "SaS" |
+    chess$party == "Sme Rodina" |
+    chess$party == "Za Ludi" |
+    chess$party == "DeSUS" |
+    chess$party == "NSI" |
+    chess$party == "SDS" |
+    chess$party == "NSI" |
+    chess$party == "SMC" ,
 ]
 
 chess3 <- chess2[

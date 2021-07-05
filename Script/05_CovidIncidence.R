@@ -4,41 +4,34 @@ library(lubridate)
 #Lines 4-14 commented because of the larg size of covid dataset. We have exported
 # the filtered dataset and worked with it.
 
-covid <- rio::import(here::here("Dataset/", "covid.csv"))
+#covid <- rio::import(here::here("Dataset/", "covid.csv"))
 
 #covid_cnt <- covid[
-# covid$location == "Italy" |
-#    covid$location == "Germany" |
-#   covid$location == "Spain" |
-#  covid$location == "United Kingdom" |
-# covid$location == "Sweden",]
-
-covid_cnt <- covid[
-  covid$iso_code == "ITA" |
-    covid$iso_code == "DEU" |
-    covid$iso_code == "ESP" |
-    covid$iso_code == "GBR" |
-    covid$iso_code == "SWE" |
-    covid$iso_code == "BEL" |
-    covid$iso_code == "BGR" |
-    covid$iso_code == "CYP" |
-    covid$iso_code == "CZE" |
-    covid$iso_code == "DNK" |
-    covid$iso_code == "EST" |
-    covid$iso_code == "FRA" |
-    covid$iso_code == "GRC" |
-    covid$iso_code == "HRV" |
-    covid$iso_code == "HUN" |
-    covid$iso_code == "IRL" |
-    covid$iso_code == "LTU" |
-    covid$iso_code == "LUX" |
-    covid$iso_code == "MLT" |
-    covid$iso_code == "NLD" |
-    covid$iso_code == "POL" |
-    covid$iso_code == "PRT" |
-    covid$iso_code == "ROU" |
-    covid$iso_code == "SVK" |
-    covid$iso_code == "SVN" , ]
+#  covid$iso_code == "ITA" |
+#    covid$iso_code == "DEU" |
+#    covid$iso_code == "ESP" |
+#    covid$iso_code == "GBR" |
+#    covid$iso_code == "SWE" |
+#    covid$iso_code == "BEL" |
+#    covid$iso_code == "BGR" |
+#    covid$iso_code == "CYP" |
+#    covid$iso_code == "CZE" |
+#    covid$iso_code == "DNK" |
+#    covid$iso_code == "EST" |
+#    covid$iso_code == "FRA" |
+#    covid$iso_code == "GRC" |
+#    covid$iso_code == "HRV" |
+#    covid$iso_code == "HUN" |
+#    covid$iso_code == "IRL" |
+#    covid$iso_code == "LTU" |
+#    covid$iso_code == "LUX" |
+#    covid$iso_code == "MLT" |
+#    covid$iso_code == "NLD" |
+#    covid$iso_code == "POL" |
+#    covid$iso_code == "PRT" |
+#    covid$iso_code == "ROU" |
+#    covid$iso_code == "SVK" |
+#    covid$iso_code == "SVN" , ]
 
 #rio::export(covid_cnt, "covid_filtered.csv")
 
@@ -76,6 +69,7 @@ incidencev <- (incidence1$new_deaths_per_million + incidence1$icu_patients_per_m
 incidence <- select(incidence1, iso_code, date)
 incidence$inc_index <- incidencev
 View(incidence)
+
 #Italy incidence----
 incidence_ITA_w1 <- incidence[
   incidence$date > as_date("2020-03-03")  &
@@ -178,6 +172,7 @@ incidence_BEL_w1 <- incidence[
     incidence$date < as_date("2020-06-15") &
     incidence$iso_code == "BEL",
 ]
+
 
 incidence_BEL_w2 <- incidence[
   incidence$date > as_date("2020-08-01")  &
