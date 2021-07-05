@@ -92,8 +92,8 @@ govs <- govs %>%
   mutate(weighted_la = weighted.mean(liberty_authority, seats))
 
 is.na(govs)
-library(imputeTS)
-govs_cl0 <- na_replace(govs, 0)
+#library(imputeTS)
+#govs_cl0 <- na_replace(govs, 0)
 govs[28, ] <- NA
 govs[30, ] <- NA
 govs_cl <- drop_na(govs)
@@ -104,6 +104,7 @@ data <- govs_cl %>%
   slice(1) %>%
   ungroup()
 
+data_s <- subset(data, select = -c(country_name, seats))
 
 
 
