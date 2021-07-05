@@ -161,26 +161,28 @@ incidence_w3 <- c(mean(incidence_BEL_w3$inc_index),
                   mean(incidence_SWE_w3$inc_index))
 
 
-#Intensive care units----
-
-data_icu <- merge(data, icu4, id = country_name)
-data_waves <- cbind(data_icu, wave1_stringency)
-data_waves2 <- cbind(data_waves, wave2_stringency)
-data_waves <- cbind(data_waves2, wave3_stringency)
-data_waves[14,16] <- 53.08496  #nel vettore non computava la media, l'abbiamo inserita a mano
 
 #Combine dateset----
 #ParlGov
 data <- govs_cl %>%
-  group_by(country_name_short, cabinet_name) %>%
+  group_by(country_name_short, country_name, cabinet_name) %>%
   slice(1) %>%
   ungroup()
 
-data_s <- subset(data, select = -c(country_name, seats))
+#Incidence COVID
+
+data_s <- subset(data, select = -c(seats, left_right, state_market, liberty_authority, election_seats_total))
 data_s <- cbind(data_s, incidence_w1)
 data_s <- cbind(data_s, incidence_w2)
 data_s <- cbind(data_s, incidence_w3)
+
+#Stringency index
+
 data_s <- cbind(data_s, wave1_stringency)
 data_s <- cbind(data_s, wave2_stringency)
 data_s <- cbind(data_s, wave3_stringency)
 
+#Intensive care units
+
+data_s2 <- merge(data_s, icu4,id = country_name)
+data_main <- subset(data_s2, select = -c(country_name, cabinet_name))

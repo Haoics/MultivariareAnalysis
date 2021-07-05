@@ -332,7 +332,7 @@ string_IRL_second <- string_fil[
 ]
 
 string_IRL_third <- string_fil[
-  string_fil$Day > as_date("2021-12-09")  &
+  string_fil$Day > as_date("2020-12-09")  &
     string_fil$Day < as_date("2021-06-28") &
     string_fil$Code == "IRL",
 ]

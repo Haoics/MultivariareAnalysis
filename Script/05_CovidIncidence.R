@@ -275,11 +275,13 @@ incidence_CZE_w1 <-   incidence [
     incidence$iso_code == "CZE",
 ]
 
-incidence_CZE_w2 <-   incidence [
+incidence_CZE_w2 <- incidence [
   incidence$date > as_date("2020-07-15")  &
     incidence$date < as_date("2020-12-08") &
-    incidence$ico_code == "CZE",
+    incidence$iso_code == "CZE",
 ]
+
+mean(incidence_CZE_w2$inc_index)
 
 incidence_CZE_w3 <-   incidence [
   incidence$date > as_date("2020-12-08")  &
@@ -377,7 +379,7 @@ incidence_IRL_w2 <- incidence [
 ]
 
 incidence_IRL_w3 <- incidence[
-  incidence$date > as_date("2021-12-09")  &
+  incidence$date > as_date("2020-12-09")  &
     incidence$date< as_date("2021-06-28") &
     incidence$iso_code == "IRL",
 ]
