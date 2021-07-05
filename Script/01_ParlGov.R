@@ -98,14 +98,6 @@ govs[28, ] <- NA
 govs[30, ] <- NA
 govs_cl <- drop_na(govs)
 
-#Dataset Unique building
-data <- govs_cl %>%
-  group_by(country_name_short, cabinet_name) %>%
-  slice(1) %>%
-  ungroup()
-
-data_s <- subset(data, select = -c(country_name, seats))
-
 
 
 

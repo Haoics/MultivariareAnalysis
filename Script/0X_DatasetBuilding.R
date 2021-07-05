@@ -79,6 +79,88 @@ wave3_stringency <- c(mean(string_bel_third$stringency_index),
                       mean(string_SVN_third$stringency_index),
                       mean(string_sw_third$stringency_index))
 
+
+#COVID waves incidence----
+
+incidence_w1 <- c(mean(incidence_BEL_w1$inc_index), 
+                      mean(incidence_BGR_w1$inc_index),
+                      mean(incidence_CYP_w1$inc_index),
+                      mean(incidence_CZE_w1$inc_index),
+                      mean(incidence_DEU_w1$inc_index),
+                      mean(incidence_DNK_w1$inc_index),
+                      mean(incidence_EST_w1$inc_index),
+                      mean(incidence_ESP_w1$inc_index),
+                      mean(incidence_FRA_w1$inc_index),
+                      mean(incidence_GBR_w1$inc_index),
+                      mean(incidence_GRC_w1$inc_index),
+                      mean(incidence_HRV_w1$inc_index),
+                      mean(incidence_HUN_w1$inc_index),
+                      mean(incidence_IRL_w1$inc_index),
+                      mean(incidence_ITA_w1$inc_index),
+                      mean(incidence_LTU_w1$inc_index),
+                      mean(incidence_LUX_w1$inc_index),
+                      mean(incidence_MLT_w1$inc_index),
+                      mean(incidence_NLD_w1$inc_index),
+                      mean(incidence_POL_w1$inc_index),
+                      mean(incidence_PRT_w1$inc_index),
+                      mean(incidence_ROU_w1$inc_index),
+                      mean(incidence_SVK_w1$inc_index),
+                      mean(incidence_SVN_w1$inc_index),
+                      mean(incidence_SWE_w1$inc_index))
+
+incidence_w2 <- c(mean(incidence_BEL_w2$inc_index), 
+                  mean(incidence_BGR_w2$inc_index),
+                  mean(incidence_CYP_w2$inc_index),
+                  mean(incidence_CZE_w2$inc_index),
+                  mean(incidence_DEU_w2$inc_index),
+                  mean(incidence_DNK_w2$inc_index),
+                  mean(incidence_EST_w2$inc_index),
+                  mean(incidence_ESP_w2$inc_index),
+                  mean(incidence_FRA_w2$inc_index),
+                  mean(incidence_GBR_w2$inc_index),
+                  mean(incidence_GRC_w2$inc_index),
+                  mean(incidence_HRV_w2$inc_index),
+                  mean(incidence_HUN_w2$inc_index),
+                  mean(incidence_IRL_w2$inc_index),
+                  mean(incidence_ITA_w2$inc_index),
+                  mean(incidence_LTU_w2$inc_index),
+                  mean(incidence_LUX_w2$inc_index),
+                  mean(incidence_MLT_w2$inc_index),
+                  mean(incidence_NLD_w2$inc_index),
+                  mean(incidence_POL_w2$inc_index),
+                  mean(incidence_PRT_w2$inc_index),
+                  mean(incidence_ROU_w2$inc_index),
+                  mean(incidence_SVK_w2$inc_index),
+                  mean(incidence_SVN_w2$inc_index),
+                  mean(incidence_SWE_w2$inc_index))
+
+incidence_w3 <- c(mean(incidence_BEL_w3$inc_index), 
+                  mean(incidence_BGR_w3$inc_index),
+                  mean(incidence_CYP_w3$inc_index),
+                  mean(incidence_CZE_w3$inc_index),
+                  mean(incidence_DEU_w3$inc_index),
+                  mean(incidence_DNK_w3$inc_index),
+                  mean(incidence_EST_w3$inc_index),
+                  mean(incidence_ESP_w3$inc_index),
+                  mean(incidence_FRA_w3$inc_index),
+                  mean(incidence_GBR_w3$inc_index),
+                  mean(incidence_GRC_w3$inc_index),
+                  mean(incidence_HRV_w3$inc_index),
+                  mean(incidence_HUN_w3$inc_index),
+                  mean(incidence_IRL_w3$inc_index),
+                  mean(incidence_ITA_w3$inc_index),
+                  mean(incidence_LTU_w3$inc_index),
+                  mean(incidence_LUX_w3$inc_index),
+                  mean(incidence_MLT_w3$inc_index),
+                  mean(incidence_NLD_w3$inc_index),
+                  mean(incidence_POL_w3$inc_index),
+                  mean(incidence_PRT_w3$inc_index),
+                  mean(incidence_ROU_w3$inc_index),
+                  mean(incidence_SVK_w3$inc_index),
+                  mean(incidence_SVN_w3$inc_index),
+                  mean(incidence_SWE_w3$inc_index))
+
+
 #Intensive care units----
 
 data_icu <- merge(data, icu4, id = country_name)
@@ -87,20 +169,18 @@ data_waves2 <- cbind(data_waves, wave2_stringency)
 data_waves <- cbind(data_waves2, wave3_stringency)
 data_waves[14,16] <- 53.08496  #nel vettore non computava la media, l'abbiamo inserita a mano
 
-#Dataset Building DA RIVEDERE----
-#Base df with operationalisations:
-country <- unique(govs$country_name_short)
-cabinet <- unique(govs$cabinet_name)
-share <- unique(govs$share_seats)
+#Combine dateset----
+#ParlGov
+data <- govs_cl %>%
+  group_by(country_name_short, cabinet_name) %>%
+  slice(1) %>%
+  ungroup()
 
-main <- data.frame(country, cabinet, share, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1_stringency,
-                   wave2_stringency, wave3_stringency, intensive_care_units, wave1_inc, wave2_inc, wave3_inc)
-first_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave1_stringency, intensive_care_units, wave1_inc)
-second_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave2_stringency, intensive_care_units, wave2_inc)
-third_wave <- data.frame(country, cabinet, lr_pg, la_pg, sm_pg, lr_ch, la_ch, sm_ch, wave3_stringency, intensive_care_units, wave3_inc)
+data_s <- subset(data, select = -c(country_name, seats))
+data_s <- cbind(data_s, incidence_w1)
+data_s <- cbind(data_s, incidence_w2)
+data_s <- cbind(data_s, incidence_w3)
+data_s <- cbind(data_s, wave1_stringency)
+data_s <- cbind(data_s, wave2_stringency)
+data_s <- cbind(data_s, wave3_stringency)
 
-main_merged <- merge(main, debt_filtered)
-
-str(main_merged)
-main_merged$intensive_care_units <- as.numeric(main_merged$intensive_care_units)
-main_merged$debt_share_on_gdp <- as.numeric(main_merged$debt_share_on_gdp)
