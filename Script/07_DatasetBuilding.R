@@ -189,7 +189,7 @@ data_s2 <- merge(data_s, icu4,id = country_name)
 #Debt
 data_fin <- merge(data_s2, debt, id = country_name) 
 
-data_main <- subset(data_fin, select = -c(country_name, cabinet_name))
+data_main <- subset(data_fin, select = -c(country_name))
 data_main$ICU<-data_main$ICU/10
 
 #rio::export(data_main, "DATA_PG.csv")
