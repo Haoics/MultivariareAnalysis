@@ -9,47 +9,35 @@ RQ: Does strength of anti-covid measures (limitation of personal freedom of move
 h0=it does not depends from political scales but only from control factors
 hA=it depends from the political scales.
 
-control for: majority strength (OK)
-economic health (OK, used percentage of debit on pil, data from indexmundi)
-health system performance (OK, ICU data OCSE)
-epidemical situation(incidence of the virus. OK. data from our world in data, complete and filtered dataset)
+control for:
+-majority strength (OK)
+-economic health (OK, used percentage of debit on pil, data from indexmundi)
+-health system performance (OK, ICU data OCSE)
+-epidemical situation(incidence of the virus. OK. data from our world in data, complete and filtered dataset)
 
 Cercare dataset:
-Stringency_Index for the three covid 19 waves --> (OK)
-Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strength (OK)
+-Stringency_Index for the three covid 19 waves --> (OK)
 
-EconomicDataset (indexmundi)
+-Left-right scale, Autorit-Libert, State-Market: operazionalization; Gov's strength (OK)
+
+EconomicDataset (indexmundi, OK)
 
 CovidData --> our world in data (OK)
 
 Operazionalizations:
 A. Scales:
-   1. Comparative Manifesto proj: https://manifesto-project.wzb.eu
-   2. Comparative Agenda proj: http://www.comparativeagendas.org
-   3. Chapell Hill: https://www.chesdata.eu
+   1. parlgov
+   2. Chapell Hill: https://www.chesdata.eu --->controllo partiti
 
-B. Health of Economy:
-   1. Indice di liquidità: 
-   2. Indice di debito.
    
-C. CovidData:
-   1. Incidenza dei Casi
-   2. Ospedalizzazioni
-   
+Stati da comporare: 25 ue
 
-Stati da comporare:
-Italy, 
-Germany,
-UK,
-Sweden,
-Spain.
+REPORT
 
-
-Codici stati
-3. Germania
-5. Spagna
-8. Italia
-11. UK
-18. Svezia
-
+-Introduction-->literature review
+-research design -->spiego tutte le scelte e le operazionalizzazioni
+-parte descrittiva --> grafico panel di stringency index (moving average?), distribuzione di incidenza virus(medie), tabella di scale politiche dei vari governi, grafico del debito, numero icu, maggioranze di governo
+-modello runnato cross sectional-->no significance, alcune tabelle con simulation
+-appendix: panel data approach (Pooled OLS)
+-Discussions and limitations
 
