@@ -47,3 +47,7 @@ debt <- rbind(debt_filtered, cyp)
 
 debt <- rename(debt, 
                country_name = country)
+
+
+##cleaning env
+rm(mundi, index_mundi, debt_filtered, cyp)

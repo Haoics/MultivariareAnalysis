@@ -511,6 +511,5 @@ string_SVN_third <- string_fil[
     string_fil$Code == "SVN",
 ]
 
-
-data_s
-
+##cleaning env
+rm(string, string_fil)

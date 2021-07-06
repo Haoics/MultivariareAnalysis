@@ -40,8 +40,8 @@ icu4 <- rename(icu3,
 
 icu4 <- select(icu4, country_name, ICU)
 
-
-
+##cleaning env
+rm(icu,icu2,icu3)
 
 
 
