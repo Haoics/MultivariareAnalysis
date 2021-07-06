@@ -66,6 +66,8 @@ party$liberty_authority <- ifelse(party$party_name_short == "M5S",  4, party$lib
 
 
 control_party_clean <- drop_na(control_party)
+control_party_clean[28:29, ] <- NA
+control_party_clean <- drop_na(control_party_clean)
 
 merged <- merge(party, control_party_clean, id = party_name)
 
@@ -87,16 +89,12 @@ govs <- govs %>%
   group_by(country_name_short) %>% 
   mutate(weighted_sm = weighted.mean(state_market, seats))
 
-govs <- govs %>%
+govs_cl <- govs %>%
   group_by(country_name_short) %>% 
   mutate(weighted_la = weighted.mean(liberty_authority, seats))
 
-is.na(govs)
-#library(imputeTS)
-#govs_cl0 <- na_replace(govs, 0)
-govs[28, ] <- NA
-govs[30, ] <- NA
-govs_cl <- drop_na(govs)
+##cleaning environment
+rm(control_party, control_party_clean, govs, merged, parl_fil, party, party_short, pgovs)
 
 
 

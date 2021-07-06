@@ -37,6 +37,7 @@ library(lubridate)
 
 
 covid_cnt <- rio::import(here::here("Dataset/", "covid_filtered.csv"))
+View(covid_cnt)
 
 #install.packages("imputeTS")
 library(imputeTS)
@@ -548,7 +549,8 @@ incidence_SVN_w3 <- incidence[
     incidence$iso_code == "SVN",
 ]
 
-
+##cleaning env
+rm(covid_cnt, covid_fit, covid_fit2, covid_fit_num, pca, fact, incidence1, incidencev, incidence)
 
 
 
