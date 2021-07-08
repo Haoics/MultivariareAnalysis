@@ -65,7 +65,7 @@ chess2 <- chess[
     chess$party == "NSI" |
     chess$party == "SMC" ,
 ]
-
+chess2$party
 chess3 <- chess2[
              chess2$country == "3" |
              chess2$country == "5" |
