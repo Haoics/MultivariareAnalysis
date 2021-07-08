@@ -66,7 +66,7 @@ print(fact, digits = 4, cutoff = .3, sort = TRUE)
 
 
 incidence1 <- select(covid_fit2, iso_code, date, new_deaths_per_million, icu_patients_per_million)
-incidencev <- (incidence1$new_deaths_per_million + incidence1$icu_patients_per_million)/2
+incidencev <- (incidence1$new_deaths_per_million + incidence1$icu_patients_per_million)/20
 incidence <- select(incidence1, iso_code, date)
 incidence$inc_index <- incidencev
 View(incidence)

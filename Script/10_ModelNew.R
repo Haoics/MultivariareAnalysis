@@ -78,5 +78,10 @@ summary(glm)
 
 plot(glm)
 
+data_cors <- select(data, share_seats, weighted_lr, weighted_la, weighted_sm, incidence, 
+                    stringency, ICU, debt_share_on_gdp, waves)
+cor(data_cors)
+
+
 
 
