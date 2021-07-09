@@ -550,7 +550,7 @@ incidence_SVN_w3 <- incidence[
 ]
 
 ##cleaning env
-rm(covid_cnt, covid_fit, covid_fit2, covid_fit_num, pca, fact, incidence1, incidencev, incidence)
+rm(covid_cnt, covid_fit, covid_fit2, covid_fit_num, pca, fact, incidence1, incidencev)
 
 
 

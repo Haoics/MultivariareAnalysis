@@ -160,6 +160,7 @@ incidence <- c(mean(incidence_BEL_w1$inc_index),
 datax3 <- data_main[rep(seq_len(nrow(data_main)), each = 3), ]
 data_main2 <- subset(datax3, select = -c(wave1_stringency, wave2_stringency, wave3_stringency,
                                          incidence_w1, incidence_w2, incidence_w3))
+wave <- c(1,2,3)
 waves <- rep(wave, 25)
 data_rebuild <- cbind(data_main2, stringency, incidence, waves)
 
