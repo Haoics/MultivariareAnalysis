@@ -23,7 +23,6 @@ string_fil <- string[
                        string$Code == "LUX" |
                        string$Code == "MLT" |
                        string$Code == "NLD" |
-                       string$Code == "POL" |
                        string$Code == "PRT" |
                        string$Code == "ROU" |
                        string$Code == "SVK" |
@@ -414,25 +413,6 @@ string_NLD_third <- string_fil[
   string_fil$Day > as_date("2021-02-15")  &
     string_fil$Day < as_date("2021-06-28") &
     string_fil$Code == "NLD",
-]
-
-#POL stringency----
-string_POL_first <- string_fil[
-  string_fil$Day > as_date("2020-03-25")  &
-    string_fil$Day < as_date("2020-07-10") &
-    string_fil$Code == "POL",
-]
-
-string_POL_second <- string_fil[
-  string_fil$Day > as_date("2020-07-15")  &
-    string_fil$Day < as_date("2021-02-02") &
-    string_fil$Code == "POL",
-]
-
-string_POL_third <- string_fil[
-  string_fil$Day > as_date("2021-02-03")  &
-    string_fil$Day < as_date("2021-06-28") &
-    string_fil$Code == "POL",
 ]
 
 #PRT stringency----

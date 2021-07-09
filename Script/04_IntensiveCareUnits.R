@@ -28,7 +28,6 @@ icu3 <- icu2[
     icu2$Country == "Luxembourg" |
     icu2$Country == "Malta" |
     icu2$Country == "Netherlands" |
-    icu2$Country == "Poland" |
     icu2$Country == "Portugal" |
     icu2$Country == "Romania" |
     icu2$Country == "Slovakia" |

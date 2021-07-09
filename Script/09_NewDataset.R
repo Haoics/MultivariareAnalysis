@@ -59,9 +59,6 @@ stringency <- c(mean(string_bel_first$stringency_index),
                       mean(string_NLD_first$stringency_index),
                 mean(string_NLD_second$stringency_index),
                 mean(string_NLD_third$stringency_index),
-                      mean(string_POL_first$stringency_index),
-                mean(string_POL_second$stringency_index),
-                mean(string_POL_third$stringency_index),
                       mean(string_PRT_first$stringency_index),
                 mean(string_PRT_second$stringency_index),
                 mean(string_PRT_third$stringency_index),
@@ -79,7 +76,7 @@ stringency <- c(mean(string_bel_first$stringency_index),
                 mean(string_sw_third$stringency_index))
 
 #covid incidence----
-incidence <- c(mean(incidence_BEL_w1$inc_index), 
+incidence_c <- c(mean(incidence_BEL_w1$inc_index), 
                 mean(incidence_BEL_w2$inc_index),
                 mean(incidence_BEL_w3$inc_index), 
                 mean(incidence_BGR_w1$inc_index),
@@ -136,9 +133,6 @@ incidence <- c(mean(incidence_BEL_w1$inc_index),
                 mean(incidence_NLD_w1$inc_index),
                 mean(incidence_NLD_w2$inc_index),
                 mean(incidence_NLD_w3$inc_index),
-                mean(incidence_POL_w1$inc_index),
-                mean(incidence_POL_w2$inc_index),
-                mean(incidence_POL_w3$inc_index),
                 mean(incidence_PRT_w1$inc_index),
                 mean(incidence_PRT_w2$inc_index),
                 mean(incidence_PRT_w3$inc_index),
@@ -161,10 +155,10 @@ datax3 <- data_main[rep(seq_len(nrow(data_main)), each = 3), ]
 data_main2 <- subset(datax3, select = -c(wave1_stringency, wave2_stringency, wave3_stringency,
                                          incidence_w1, incidence_w2, incidence_w3))
 wave <- c(1,2,3)
-waves <- rep(wave, 25)
-data_rebuild <- cbind(data_main2, stringency, incidence, waves)
+waves <- rep(wave, 24)
+data_rebuild <- cbind(data_main2, stringency, incidence_c, waves)
 
-rio::export(data_rebuild, "DATA_new.csv")
+#rio::export(data_rebuild, "DATA_new.csv")
 
 
 

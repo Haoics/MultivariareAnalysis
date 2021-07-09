@@ -32,7 +32,6 @@ debt_filtered <- debt[
     debt$country == "Luxembourg" |
     debt$country == "Malta" |
     debt$country == "Netherlands" |
-    debt$country == "Poland" |
     debt$country == "Portugal" |
     debt$country == "Romania" |
     debt$country == "Slovakia" |

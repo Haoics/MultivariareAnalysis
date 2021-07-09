@@ -3,7 +3,7 @@ library(lubridate)
 
 #Lines 4-14 commented because of the larg size of covid dataset. We have exported
 # the filtered dataset and worked with it.
-
+####################################
 #covid <- rio::import(here::here("Dataset/", "covid.csv"))
 
 #covid_cnt <- covid[
@@ -20,24 +20,24 @@ library(lubridate)
 #    covid$iso_code == "EST" |
 #    covid$iso_code == "FRA" |
 #    covid$iso_code == "GRC" |
-#    covid$iso_code == "HRV" |
+#   covid$iso_code == "HRV" |
 #    covid$iso_code == "HUN" |
 #    covid$iso_code == "IRL" |
 #    covid$iso_code == "LTU" |
 #    covid$iso_code == "LUX" |
 #    covid$iso_code == "MLT" |
-#    covid$iso_code == "NLD" |
-#    covid$iso_code == "POL" |
+#   covid$iso_code == "NLD" |
 #    covid$iso_code == "PRT" |
 #    covid$iso_code == "ROU" |
 #    covid$iso_code == "SVK" |
 #    covid$iso_code == "SVN" , ]
 
+
 #rio::export(covid_cnt, "covid_filtered.csv")
 
 
 covid_cnt <- rio::import(here::here("Dataset/", "covid_filtered.csv"))
-View(covid_cnt)
+#View(covid_cnt)
 
 #install.packages("imputeTS")
 library(imputeTS)
@@ -69,7 +69,7 @@ incidence1 <- select(covid_fit2, iso_code, date, new_deaths_per_million, icu_pat
 incidencev <- (incidence1$new_deaths_per_million + incidence1$icu_patients_per_million)/20
 incidence <- select(incidence1, iso_code, date)
 incidence$inc_index <- incidencev
-View(incidence)
+#View(incidence)
 
 #Italy incidence----
 incidence_ITA_w1 <- incidence[
@@ -452,25 +452,6 @@ incidence_NLD_w3 <- incidence[
   incidence$date > as_date("2021-02-15") &
     incidence$date < as_date("2021-06-28") &
     incidence$iso_code == "NLD",
-]
-
-#POL incidence----
-incidence_POL_w1 <- incidence[
-  incidence$date > as_date("2020-03-25") &
-    incidence$date < as_date("2020-07-10") &
-    incidence$iso_code == "POL",
-]
-
-incidence_POL_w2 <- incidence[
-  incidence$date > as_date("2020-07-15") &
-    incidence$date < as_date("2021-02-02") &
-    incidence$iso_code == "POL",
-]
-
-incidence_POL_w3 <- incidence[
-  incidence$date > as_date("2021-02-03") &
-    incidence$date < as_date("2021-06-28") &
-    incidence$iso_code == "POL",
 ]
 
 #PRT incidence----

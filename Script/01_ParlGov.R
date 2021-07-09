@@ -8,7 +8,6 @@ parl_fil <- pgovs[
       pgovs$cabinet_name == "Lofven III" |
       pgovs$cabinet_name == "Sanchez III" |
       pgovs$cabinet_name == "Johnson II" |
-      pgovs$cabinet_name ==  "Morawiecki II" |
         pgovs$cabinet_name ==  "Wilmes II" | 
         pgovs$cabinet_name ==  "Costa II" |
         pgovs$cabinet_name ==  "Bierlein II" |
