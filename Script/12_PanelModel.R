@@ -46,12 +46,7 @@ data.pan <- make.pbalanced(data.pan)
 
 table(index(data), useNA = "ifany")
 
-
 pl <- plm(data = data.pan, string_mean ~ weighted_lr + incidence_mean + share_seats + 
-    ICU + debt_share_on_gdp, index = c("period", "wave"))
+    ICU + debt_share_on_gdp, method = "pooled", index = c("period", "wave"))
 
-summary(pl)
-
-a <- c(names(data))
-a <- c(a[2:11])
 
