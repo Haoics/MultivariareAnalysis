@@ -5,8 +5,6 @@ library(tidyr)
 
 data <- rio::import(here::here("Dataset/", "PanelSet.csv"))
 
-#DF as panel
-data <- pdata.frame(data) 
 
 #Date management
 data <- data %>% 
@@ -35,6 +33,10 @@ data$period <- ifelse(data$date == as.Date("2020-03-01"), 1,
                ifelse(data$date == as.Date("2021-04-01"), 14,
                ifelse(data$date == as.Date("2021-05-01"), 15, 16)))))))))))))))
 
+#DF as panel
+data.pan <- pdata.frame(data, index = c("period", "iso_code")) 
+
+
 data.pan <- select(data, period, wave, iso_code, cabinet_name, string_mean, incidence_mean, share_seats,
                weighted_lr, weighted_la, weighted_sm, ICU, debt_share_on_gdp)
 
@@ -47,6 +49,7 @@ data.pan <- make.pbalanced(data.pan)
 table(index(data), useNA = "ifany")
 
 pl <- plm(data = data.pan, string_mean ~ weighted_lr + incidence_mean + share_seats + 
-    ICU + debt_share_on_gdp, method = "pooled", index = c("period", "wave"))
+    ICU + debt_share_on_gdp, model = "pooling")
 
+summary(pl)
 
