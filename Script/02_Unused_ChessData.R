@@ -30,7 +30,8 @@ chess2 <- chess[
     chess$party == "DISY" |    
     chess$party == "ANO2011" |
     chess$party == "CSSD" |
-    chess$party == "SD" | #ce ne sono troppi, Eliminare l'osservazione della svezia C = 16
+    chess$party == "SD" &
+    chess$country == 16 | #ce ne sono troppi, Eliminare l'osservazione c=2 e c=26. tengo della svezia C = 16
     chess$party == "EK" |
     chess$party == "EKRE" |
     chess$party == "IRL" |
@@ -44,7 +45,7 @@ chess2 <- chess[
     chess$party == "LLRA" |
     chess$party == "LSDP" |
     chess$party == "TT" |
-    chess$party == "DP" | #Lux C = 38
+    chess$party == "DP" |
     chess$party == "Greng" |
     chess$party == "LSAP" |
     chess$party == "PL" |
@@ -53,7 +54,7 @@ chess2 <- chess[
     chess$party == "D66" |
     chess$party == "VVD" |
     chess$party == "PiS" |
-    chess$party == "PS" | #Portogallo C = 12
+    chess$party == "PS" | #c 12
     chess$party == "PNL" |
     chess$party == "OLaNO" |
     chess$party == "SaS" |
@@ -63,34 +64,43 @@ chess2 <- chess[
     chess$party == "NSI" |
     chess$party == "SDS" |
     chess$party == "NSI" |
-    chess$party == "SMC" ,
+        chess$party_id == 613 |
+     chess$party == "SMC" ,
 ]
-chess2$party
-chess3 <- chess2[
-             chess2$country == "3" |
-             chess2$country == "5" |
-             chess2$country == "8" |
-             chess2$country == "11" |
-             chess2$country == "16" ,
-]
+
+chess2<-select(chess2, country, party, lrgen, lrecon, galtan)
+rownames(chess2)<-1:60
+chess2[c(1, 11, 22, 26, 42, 48), ] <- NA
+chess2 <-drop_na(chess2)
+
+#chess3 <- chess2[
+             #chess2$country == "3" |
+             #chess2$country == "5" |
+             #chess2$country == "8" |
+             #chess2$country == "11" |
+             #chess2$country == "16" ,
+#]
 
 #managment dataset----
 
-chess4 <- select(chess3, country, party, lrgen, lrecon, galtan)
 
-cdu <- chess4[1, ]
-csu <- chess4[3, ]
+cdu <- chess2[4, ]
+csu <- chess2[6, ]
 cdu[, 2] <- NA
 csu[,2] <- NA
 cdu_csu <- (cdu+csu)/2
 cdu_csu[,2] <- "CDU+CSU"
 
-chess_5 <- rbind(chess4, cdu_csu)
+chess_3 <- rbind(chess2, cdu_csu)
 
-chess_5[1,] <- NA
-chess_5[3,] <- NA
+chess_3[4,] <- NA
+chess_3[6,] <- NA
 
-chess6 <- drop_na(chess_5)
+chess4 <- drop_na(chess_3)
+
+
+
+
 
 ##medie ponderate----
 lr_ch_ita<-(3.21*112 + 4.78*227 + 1.44*14)/353
