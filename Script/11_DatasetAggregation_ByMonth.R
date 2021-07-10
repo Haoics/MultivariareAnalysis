@@ -222,10 +222,9 @@ step3[c(224, 226, 228, 230, 232), 9] <- ita_2_sm
 step3[c(224, 226, 228, 230, 232), 10] <- ita_2_la
 step3[c(224, 226, 228, 230, 232), 7] <- ita_share
 
-panels <- arrange(step3, by = month & year )
 
-panels <- panels[
-  with(panels, order(year, month)),
+panels <- step3[
+  with(step3, order(year, month)),
 ]
 
 #rio::export(panels, "PanelSet.csv")

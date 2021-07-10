@@ -5,17 +5,17 @@ library(forcats)
 
 
 #scatterplot of incidence and stringency
-ggplot(data_rebuild, aes(x=stringency, y=incidence_c, group = country_name_short)) + geom_point() + facet_wrap(~waves) + theme_bw()
+ggplot(data_rebuild, aes(x=incidence_c, y=stringency, group = country_name_short)) + geom_point() + facet_wrap(~waves) + theme_bw()
 
 #showing incidences
-ggplot(data_rebuild, aes(x = reorder(country_name_short, incidence_c, function(x) mean(x, na.rm = T)), y = incidence_c)) +
-  geom_violin(fill = "gray50", trim = F, scale = "width") +
-  facet_wrap(~waves)+
-  geom_boxplot(fill = "white", width = 0.2) +
-  coord_flip() +
-  ylab("Incidence of the virus") +
-  xlab("Country") +
-  theme_bw()
+#ggplot(data_rebuild, aes(x = reorder(country_name_short, incidence_c, function(x) mean(x, na.rm = T)), y = incidence_c)) +
+ # geom_violin(fill = "gray50", trim = F, scale = "width") +
+  #facet_wrap(~waves)+
+ # geom_boxplot(fill = "white", width = 0.2) +
+ # coord_flip() +
+ # ylab("Incidence of the virus") +
+ # xlab("Country") +
+ # theme_bw()
 
 #showing stringencies
 ggplot(data_rebuild, aes(x = reorder(country_name_short, stringency, function(x) mean(x, na.rm = T)), y = stringency)) +
@@ -82,12 +82,12 @@ ggplot(data_rebuild, aes(x= reorder(waves, -stringency), y = stringency)) +
   theme_bw()
 
 ##incidence by country and wave
-ggplot(data_rebuild, aes(x= reorder(waves, -incidence_c), y = incidence_c)) +
-  geom_bar(stat="identity", color = "light blue", fill = "light blue") + 
-  facet_wrap(~country_name_short)+
-  ylab("Incidence") +
-  xlab("Waves") +
-  theme_bw()
+#ggplot(data_rebuild, aes(x= reorder(waves, -incidence_c), y = incidence_c)) +
+ # geom_bar(stat="identity", color = "light blue", fill = "light blue") + 
+  #facet_wrap(~country_name_short)+
+  #ylab("Incidence") +
+  #xlab("Waves") +
+  #theme_bw()
 
 
 ##seggi maggioranza
