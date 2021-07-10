@@ -14,7 +14,7 @@ mat.df <- data.frame(weighted_sm = median(data$weighted_sm, na.rm = TRUE),
                      incidence_w1 = incidence.vals)
 
 preds <- predict(lm(data = data, wave1_stringency ~ weighted_sm + ICU + 
-                       incidence_w1 + debt),
+                       incidence_w1 + debt_share_on_gdp),
                  newdata = mat.df,
                  interval = "confidence",
                  level = 0.95 )

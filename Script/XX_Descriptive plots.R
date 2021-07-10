@@ -124,7 +124,7 @@ matr.df <- data.frame(weighted_lr = median(data$weighted_lr, na.rm = TRUE),
 
 preds.v <- predict(lm(stringency ~ weighted_lr + share_seats + ICU + 
                      debt_share_on_gdp + incidence_c,
-                     data = data, weights=wt),
+                     data = data,),
                  newdata = matr.df,
                  interval = "confidence",
                  level = 0.95 )
