@@ -281,6 +281,8 @@ lines(debt.values,
 #indidences in the countries
 data <- rio::import(here::here("Dataset/", "PanelSet.csv"))
 
+is.numeric(data$incidence_mean)
+
 ggplot(data, aes(x= reorder(iso_code, -incidence_mean), y = incidence_mean)) +
  geom_bar(stat="identity", color = "light blue", fill = "light blue") + 
 ylab("Incidence Index") +
@@ -294,6 +296,28 @@ ggplot(data, aes(x= reorder(iso_code, -string_mean), y = string_mean)) +
   ylab("Stringency Index") +
   xlab("Country") +
   theme_bw()
+
+##time series stringency
+data_str<-rio::import(here::here("Dataset/", "PanelPlot.csv"))
+
+##facet strincencies over months in european countries
+ggplot(data_str, aes(x= period, y = string_mean, group = iso_code)) +
+  geom_line() + facet_wrap(~iso_code, ncol = 5)
+
+
+## heatmap strincency for countries
+ggplot(filter(data_str, !is.na(string_mean)), 
+       aes(x = period, y = reorder(iso_code, string_mean, function(x) mean(x, na.rm = T)))) +
+  geom_tile(aes(fill = string_mean)) +
+  scale_fill_gradient(low = "green", high = "red", "Stringency Index") +
+  ylab("") +
+  xlab("Monthly Stringency Index") +
+  ggtitle("Stringency Index in European Countries from March 2020 to June 2021")
+
+##facet incidences over months in european countries
+ggplot(data_str, aes(x= period, y = incidence_mean, group = iso_code)) +
+  geom_line() + facet_wrap(~iso_code, ncol = 5)
+
 
 
 
