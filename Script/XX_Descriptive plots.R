@@ -74,12 +74,12 @@ ggplot(data_main, aes(x= reorder(country_name_short, weighted_la), y = weighted_
 
 
 ##stringencies by country and wave
-ggplot(data_rebuild, aes(x= reorder(waves, -stringency), y = stringency)) +
-  geom_bar(stat="identity") + 
-  facet_wrap(~country_name_short)+
-  ylab("Strimgency Index") +
-  xlab("Waves") +
-  theme_bw()
+#ggplot(data_rebuild, aes(x= reorder(waves, -stringency), y = stringency)) +
+  #geom_bar(stat="identity") + 
+  #facet_wrap(~country_name_short)+
+ # ylab("Strimgency Index") +
+ # xlab("Waves") +
+ # theme_bw()
 
 ##incidence by country and wave
 #ggplot(data_rebuild, aes(x= reorder(waves, -incidence_c), y = incidence_c)) +
@@ -154,119 +154,147 @@ lines(incidence.values,
 )
 
 #ICU vals. simulation----
-icu.vals <- seq(from = min(data$ICU, na.rm = TRUE),
+icu.values <- seq(from = min(data$ICU, na.rm = TRUE),
                 to = max(data$ICU, na.rm = TRUE),
                 length.out = 1000)
 
-mat.df2 <- data.frame(ICU = icu.vals,
+matr.df2 <- data.frame(ICU = icu.values,
                       weighted_lr = median(data$weighted_lr, na.rm = TRUE),
-                      incidence_w1 = median(data$incidence_w1, na.rm = TRUE))
+                      incidence_c = median(data$incidence_c, na.rm = TRUE),
+                      share_seats = median(data$share_seats, na.rm = TRUE),
+                      debt_share_on_gdp = median(data$debt_share_on_gdp, na.rm = TRUE))
 
-preds2 <- predict(lm(data = data, wave1_stringency ~ weighted_lr + ICU + incidence_w1),
-                  newdata = mat.df2,
+preds2.v <- predict(lm(stringency ~ weighted_lr + share_seats + ICU + 
+                       debt_share_on_gdp + incidence_c,
+                     data = data),
+                  newdata = matr.df2,
                   interval = "confidence",
                   level = 0.95 )
 
-plot(icu.vals,
-     preds2[, 1],
+plot(icu.values,
+     preds2.v[, 1],
      type = "l",
      lwd = 2,
      xlab = "ICU",
      ylab = "Predicted Stringecy Index",
      main = "Effect of Intensive Care Units number on Stringency Index Values",
-     ylim = c(min(preds2[, 2]),
-              max(preds2[, 3])
+     ylim = c(min(preds2.v[, 2]),
+              max(preds2.v[, 3])
      )
 )
 
-lines(icu.vals,
-      preds2[, 2],
+lines(icu.values,
+      preds2.v[, 2],
       lty = 2,
       col = "blue"
 )
 
-lines(icu.vals,
-      preds2[, 3],
+lines(icu.values,
+      preds2.v[, 3],
       lty = 2,
       col = "blue"
 )
 
 #Left-right vals. simulation----
-lr.vals <- seq(from = min(data$weighted_lr, na.rm = TRUE),
+lr.values <- seq(from = min(data$weighted_lr, na.rm = TRUE),
                to = max(data$weighted_lr, na.rm = TRUE),
                length.out = 1000)
 
-mat.df3 <- data.frame(ICU = median(data$ICU, na.rm = TRUE) ,
-                      weighted_lr = lr.vals ,
-                      incidence_w1 = median(data$incidence_w1, na.rm = TRUE))
+matr.df3 <- data.frame(ICU = median(data$ICU, na.rm = TRUE) ,
+                      weighted_lr = lr.values ,
+                      incidence_c = median(data$incidence_c, na.rm = TRUE),
+                      share_seats = median(data$share_seats, na.rm = TRUE),
+                      debt_share_on_gdp = median(data$debt_share_on_gdp, na.rm = TRUE))
 
-preds3 <- predict(lm(data = data, wave1_stringency ~ weighted_lr + ICU + incidence_w1),
-                  newdata = mat.df3,
+preds3.v <- predict(lm(stringency ~ weighted_lr + share_seats + ICU + 
+                         debt_share_on_gdp + incidence_c,
+                       data = data),
+                  newdata = matr.df3,
                   interval = "confidence",
                   level = 0.95 )
 
-plot(lr.vals,
-     preds3[, 1],
+plot(lr.values,
+     preds3.v[, 1],
      type = "l",
      lwd = 2,
      xlab = "Left Right scale",
      ylab = "Predicted Stringecy Index",
      main = "Effect of Left-Right Scale on Stringency Index Values",
-     ylim = c(min(preds2[, 2]),
-              max(preds2[, 3])
+     ylim = c(min(preds3.v[, 2]),
+              max(preds3.v[, 3])
      )
 )
 
-lines(lr.vals,
-      preds3[, 2],
+lines(lr.values,
+      preds3.v[, 2],
       lty = 2,
       col = "red"
 )
 
-lines(lr.vals,
-      preds3[, 3],
+lines(lr.values,
+      preds3.v[, 3],
       lty = 2,
       col = "red"
 )
 
 #debt simulation----
-debt.vals <- seq(from = min(data$debt_share_on_gdp, na.rm = TRUE),
+debt.values <- seq(from = min(data$debt_share_on_gdp, na.rm = TRUE),
                  to = max(data$debt_share_on_gdp, na.rm = TRUE),
                  length.out = 1000)
 
-mat.df4 <- data.frame(weighted_sm = median(data$weighted_sm, na.rm = TRUE),
+matr.df4 <- data.frame(weighted_sm = median(data$weighted_sm, na.rm = TRUE),
                       ICU = median(data$ICU, na.rm = TRUE),
-                      incidence_w1 = median(data$incidence_w1, na.rm = TRUE),
-                      debt_share_on_gdp = debt.vals)
+                      incidence_c = median(data$incidence_c, na.rm = TRUE),
+                      share_seats = median(data$share_seats, na.rm = TRUE),
+                      debt_share_on_gdp = debt.values)
 
-preds4 <- predict(lm(data = data, wave1_stringency ~ weighted_sm + ICU + 
-                       incidence_w1 + debt_share_on_gdp),
-                  newdata = mat.df4,
+preds4.v <- predict(lm(data = data, stringency ~ weighted_sm + ICU + 
+                       incidence_c + debt_share_on_gdp),
+                  newdata = matr.df4,
                   interval = "confidence",
                   level = 0.95 )
 
-plot(debt.vals,
-     preds4[, 1],
+plot(debt.values,
+     preds4.v[, 1],
      type = "l",
      lwd = 2,
      xlab = "Total Debt",
      ylab = "Predicted Stringecy Index",
      main = "Effect of Debt share on Stringency Index Values",
-     ylim = c(min(preds4[, 2]),
-              max(preds4[, 3])
+     ylim = c(min(preds4.v[, 2]),
+              max(preds4.v[, 3])
      )
 )
-lines(debt.vals,
-      preds4[, 2],
+lines(debt.values,
+      preds4.v[, 2],
       lty = 2,
       col = "red"
 )
 
-lines(debt.vals,
-      preds4[, 3],
+lines(debt.values,
+      preds4.v[, 3],
       lty = 2,
       col = "red"
 )
+
+
+#indidences in the countries
+data <- rio::import(here::here("Dataset/", "PanelSet.csv"))
+
+ggplot(data, aes(x= reorder(iso_code, -incidence_mean), y = incidence_mean)) +
+ geom_bar(stat="identity", color = "light blue", fill = "light blue") + 
+ylab("Incidence Index") +
+xlab("Country") +
+theme_bw()
+
+##stringencies in the country, again.
+is.numeric(data$string_mean)
+ggplot(data, aes(x= reorder(iso_code, -string_mean), y = string_mean)) +
+  geom_bar(stat="identity", color = "dark blue", fill = "dark blue") + 
+  ylab("Stringency Index") +
+  xlab("Country") +
+  theme_bw()
+
 
 
 
