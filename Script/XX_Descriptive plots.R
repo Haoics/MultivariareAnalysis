@@ -29,6 +29,8 @@ ggplot(data_rebuild, aes(x = reorder(country_name_short, stringency, function(x)
   theme_bw()
 
 
+
+
 ##debito
 
 is.numeric(data_main$debt_share_on_gdp)
