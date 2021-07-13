@@ -4,6 +4,7 @@ install.packages("forcats")
 library(forcats)
 
 
+data_rebuild$debt_share_on_gdp <- as.numeric(data_rebuild$debt_share_on_gdp)
 #scatterplot of incidence and stringency
 ggplot(data_rebuild, aes(x=incidence_c, y=stringency, group = country_name_short)) + geom_point() + facet_wrap(~waves) + theme_bw()
 
@@ -319,7 +320,7 @@ ggplot(data_str, aes(x= period, y = incidence_mean, group = iso_code)) +
   geom_line() + facet_wrap(~iso_code, ncol = 5)
 
 
-
+summary(data_rebuild)
 
 
 
