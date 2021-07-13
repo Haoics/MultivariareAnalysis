@@ -322,7 +322,5 @@ ggplot(data_str, aes(x= period, y = incidence_mean, group = iso_code)) +
   geom_line() + facet_wrap(~iso_code, ncol = 5)
 
 
-summary(data_rebuild)
-
-
+summary(panels)
 
