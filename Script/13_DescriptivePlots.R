@@ -324,3 +324,108 @@ ggplot(data_str, aes(x= period, y = incidence_mean, group = iso_code)) +
 
 summary(panels)
 
+#state market simulation
+sm.values <- seq(from = min(data$weighted_sm, na.rm = TRUE),
+                 to = max(data$weighted_sm, na.rm = TRUE),
+                 length.out = 1000)
+
+
+
+matr.df3_sm <- data.frame(ICU = median(data$ICU, na.rm = TRUE) ,
+                          weighted_sm = sm.values ,
+                          incidence_c = median(data$incidence_c, na.rm = TRUE),
+                          share_seats = median(data$share_seats, na.rm = TRUE),
+                          debt_share_on_gdp = median(data$debt_share_on_gdp, na.rm = TRUE))
+
+
+
+preds3.vv <- predict(lm(stringency ~ weighted_sm + share_seats + ICU +
+                          debt_share_on_gdp + incidence_c,
+                        data = data),
+                     newdata = matr.df3_sm,
+                     interval = "confidence",
+                     level = 0.95 )
+
+
+
+plot(sm.values,
+     preds3.vv[, 1],
+     type = "l",
+     lwd = 2,
+     xlab = "State Market scale",
+     ylab = "Predicted Stringecy Index",
+     main = "Effect of State-Market Scale on Stringency Index Values",
+     ylim = c(min(preds3.vv[, 2]),
+              max(preds3.vv[, 3])
+     )
+)
+
+
+
+lines(sm.values,
+      preds3.vv[, 2],
+      lty = 2,
+      col = "red"
+)
+
+
+
+lines(sm.values,
+      preds3.vv[, 3],
+      lty = 2,
+      col = "red"
+)
+
+
+
+##liberty authority pred
+la.values <- seq(from = min(data$weighted_la, na.rm = TRUE),
+                 to = max(data$weighted_la, na.rm = TRUE),
+                 length.out = 1000)
+
+
+
+matr.df3_la <- data.frame(ICU = median(data$ICU, na.rm = TRUE) ,
+                          weighted_la = la.values ,
+                          incidence_c = median(data$incidence_c, na.rm = TRUE),
+                          share_seats = median(data$share_seats, na.rm = TRUE),
+                          debt_share_on_gdp = median(data$debt_share_on_gdp, na.rm = TRUE))
+
+
+
+preds3.vvv <- predict(lm(stringency ~ weighted_la + share_seats + ICU +
+                           debt_share_on_gdp + incidence_c,
+                         data = data),
+                      newdata = matr.df3_la,
+                      interval = "confidence",
+                      level = 0.95 )
+
+
+
+plot(la.values,
+     preds3.vvv[, 1],
+     type = "l",
+     lwd = 2,
+     xlab = "Liberty Authority scale",
+     ylab = "Predicted Stringecy Index",
+     main = "Effect of Liberty-Authority Scale on Stringency Index Values",
+     ylim = c(min(preds3.vvv[, 2]),
+              max(preds3.vvv[, 3])
+     )
+)
+
+
+
+lines(la.values,
+      preds3.vvv[, 2],
+      lty = 2,
+      col = "red"
+)
+
+
+
+lines(la.values,
+      preds3.vvv[, 3],
+      lty = 2,
+      col = "red"
+)
