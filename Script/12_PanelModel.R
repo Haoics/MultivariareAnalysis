@@ -43,8 +43,10 @@ data.pan <- select(data, date, wave, iso_code, cabinet_name, string_mean, incide
 #general model----
 
 data.pan$wave <- as.factor((data.pan$wave))
-linearModel <- lm(data = data.pan, string_mean ~ weighted_lr + weighted_la + weighted_sm + share_seats + ICU + debt_share_on_gdp+ incidence_mean)
+linearModel <- lm(data = data.pan, string_mean ~ wave + weighted_lr + weighted_la + weighted_sm + share_seats + ICU + debt_share_on_gdp+ incidence_mean)
 summary(linearModel)
+
+plot(linearModel)
 
 lmtest::bptest(linearModel) #heterosckedasticity prob
 car::durbinWatsonTest(linearModel) #autocorrelation: it's a panel.
