@@ -1,22 +1,11 @@
 library(ggplot2)
-install.packages("forcats")
-
+#install.packages("forcats")
 library(forcats)
 
 
-data_rebuild$debt_share_on_gdp <- as.numeric(data_rebuild$debt_share_on_gdp)
 #scatterplot of incidence and stringency
 ggplot(data_rebuild, aes(x=incidence_c, y=stringency, group = country_name_short)) + geom_point() + facet_wrap(~waves) + theme_bw()
 
-#showing incidences
-#ggplot(data_rebuild, aes(x = reorder(country_name_short, incidence_c, function(x) mean(x, na.rm = T)), y = incidence_c)) +
- # geom_violin(fill = "gray50", trim = F, scale = "width") +
-  #facet_wrap(~waves)+
- # geom_boxplot(fill = "white", width = 0.2) +
- # coord_flip() +
- # ylab("Incidence of the virus") +
- # xlab("Country") +
- # theme_bw()
 
 #showing stringencies
 ggplot(data_rebuild, aes(x = reorder(country_name_short, stringency, function(x) mean(x, na.rm = T)), y = stringency)) +
@@ -27,9 +16,6 @@ ggplot(data_rebuild, aes(x = reorder(country_name_short, stringency, function(x)
   ylab("Stringency Index") +
   xlab("Country") +
   theme_bw()
-
-
-
 
 ##debito
 
@@ -76,21 +62,6 @@ ggplot(data_main, aes(x= reorder(country_name_short, weighted_la), y = weighted_
   theme_bw()
 
 
-##stringencies by country and wave
-#ggplot(data_rebuild, aes(x= reorder(waves, -stringency), y = stringency)) +
-  #geom_bar(stat="identity") + 
-  #facet_wrap(~country_name_short)+
- # ylab("Strimgency Index") +
- # xlab("Waves") +
- # theme_bw()
-
-##incidence by country and wave
-#ggplot(data_rebuild, aes(x= reorder(waves, -incidence_c), y = incidence_c)) +
- # geom_bar(stat="identity", color = "light blue", fill = "light blue") + 
-  #facet_wrap(~country_name_short)+
-  #ylab("Incidence") +
-  #xlab("Waves") +
-  #theme_bw()
 
 
 ##majority share
@@ -105,10 +76,6 @@ ggplot(data_main, aes(x=reorder(country_name_short, share_seats), y = share_seat
 data <- rio::import(here::here("Dataset/", "Data_new.csv"))
 View(data)
 #Incidence Values simulation----
-
-#wls_model <- lm(stringency ~ waves + weighted_lr + share_seats + ICU + 
-                  #debt_share_on_gdp + incidence_c,
-               # data = data, weights=wt)
 
 incidence.values <- seq(from = min(data$incidence_c, na.rm = TRUE),
                       to = max(data$incidence_c, na.rm = TRUE),
@@ -154,48 +121,6 @@ lines(incidence.values,
       preds.v[, 3],
       lty = 2,
       col = "red"
-)
-
-#ICU vals. simulation----
-icu.values <- seq(from = min(data$ICU, na.rm = TRUE),
-                to = max(data$ICU, na.rm = TRUE),
-                length.out = 1000)
-
-matr.df2 <- data.frame(ICU = icu.values,
-                      weighted_lr = median(data$weighted_lr, na.rm = TRUE),
-                      incidence_c = median(data$incidence_c, na.rm = TRUE),
-                      share_seats = median(data$share_seats, na.rm = TRUE),
-                      debt_share_on_gdp = median(data$debt_share_on_gdp, na.rm = TRUE))
-
-preds2.v <- predict(lm(stringency ~ weighted_lr + share_seats + ICU + 
-                       debt_share_on_gdp + incidence_c,
-                     data = data),
-                  newdata = matr.df2,
-                  interval = "confidence",
-                  level = 0.95 )
-
-plot(icu.values,
-     preds2.v[, 1],
-     type = "l",
-     lwd = 2,
-     xlab = "ICU",
-     ylab = "Predicted Stringecy Index",
-     main = "Effect of Intensive Care Units number on Stringency Index Values",
-     ylim = c(min(preds2.v[, 2]),
-              max(preds2.v[, 3])
-     )
-)
-
-lines(icu.values,
-      preds2.v[, 2],
-      lty = 2,
-      col = "blue"
-)
-
-lines(icu.values,
-      preds2.v[, 3],
-      lty = 2,
-      col = "blue"
 )
 
 #Left-right vals. simulation----
@@ -359,17 +284,11 @@ plot(sm.values,
               max(preds3.vv[, 3])
      )
 )
-
-
-
 lines(sm.values,
       preds3.vv[, 2],
       lty = 2,
       col = "red"
 )
-
-
-
 lines(sm.values,
       preds3.vv[, 3],
       lty = 2,
@@ -413,17 +332,11 @@ plot(la.values,
               max(preds3.vvv[, 3])
      )
 )
-
-
-
 lines(la.values,
       preds3.vvv[, 2],
       lty = 2,
       col = "red"
 )
-
-
-
 lines(la.values,
       preds3.vvv[, 3],
       lty = 2,
